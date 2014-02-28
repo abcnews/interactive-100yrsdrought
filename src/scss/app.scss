@@ -1,0 +1,387 @@
+@import 'compass';
+
+$border-color: #E5E5E5;
+$break: 700px;
+
+
+.cyrsd-container {
+	border: 1px solid $border-color;
+	background: #FCFCFC; 
+	padding: 30px;
+	position: relative;
+	z-index: 1;
+	@include clearfix;
+
+	font-family: "ProximaNova",Arial,Helvetica,sans-serif;
+	font-weight: normal;
+	text-rendering: optimizelegibility;
+	color: #525252;
+
+	@media screen and (max-width: $break) {
+		padding: 10px;
+	}
+
+	.cyrsd-header {
+		h2 {
+			margin-top: 0;
+		}
+		border-bottom: 1px dashed $border-color;
+		margin-bottom: 10px;
+
+		.cyrsd-buttons {
+
+			@include clearfix;
+			padding-bottom: 10px;
+
+			div {
+				margin-top: 30px;
+				@media screen and (max-width: $break) {
+					font-size: 0.7em;
+				}
+			}
+
+			button {
+
+				border: 1px solid #CECECE;
+				color: #444444;
+				padding: 3px 5px;
+				font-size: 12px;
+				background-color: #fff;
+				display: block;
+				float: left;
+				width: 80px;
+				height: 45px;
+				cursor: pointer;
+				margin-right: 10px;
+
+				&.timeline {
+					@include replace-text( url(http://www.abc.net.au/dat/news/interactives/100-yrs-of-drought/interface/btn-interactive-inactive.png), center, center);
+				}
+
+				&.timeline.active {
+					@include replace-text( url(http://www.abc.net.au/dat/news/interactives/100-yrs-of-drought/interface/btn-interactive-active.png), center, center);
+				}
+				
+				&.small-multiples {
+					@include replace-text( url(http://www.abc.net.au/dat/news/interactives/100-yrs-of-drought/interface/btn-multiples-inactive.png), center, center);
+				}
+
+				&.small-multiples.active {
+					@include replace-text( url(http://www.abc.net.au/dat/news/interactives/100-yrs-of-drought/interface/btn-multiples-active.png), center, center);
+				}
+
+				&.active {
+					background-color: #46A4FC;
+					border-color: #46A4FC;
+					font-weight: normal;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	.cyrsd-key {
+		color: #525252;
+		position: absolute;
+		right: 0;
+		top: 140px;
+		width: 400px;
+		z-index: 1;
+
+		@media screen and (max-width: $break) {
+			position: relative;
+			width: auto;
+			top: auto;
+			padding-top: 20px;
+		}
+
+		h4 {
+			font-size: 16px;
+		}
+
+		ol {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				
+				font-size: 14px;
+
+				div {
+					height: 14px;
+					width: 14px;
+					@include border-radius(9px);
+					@include inline-block;
+					vertical-align: text-bottom;
+					margin-right: 5px;
+					border: 1px solid #666666;
+
+					&.cyrsd-key-color-highest {background-color: #007AFE}
+					&.cyrsd-key-color-higher {background-color: #65AFFE}
+					&.cyrsd-key-color-high {background-color: #C9E2FE}
+					&.cyrsd-key-color-average {background-color: #FFFFFF}
+					&.cyrsd-key-color-low {background-color: #FFE2C8}
+					&.cyrsd-key-color-lower {background-color: #FFAE64}
+					&.cyrsd-key-color-lowest {background-color: #FF8718}
+				}
+			}
+		}
+	}
+
+	.cyrsd-trigger {
+		position: relative;
+		z-index: 2;
+
+		.cyrsd-years {
+			height: 442px;
+			@media screen and (max-width: $break) {
+				height: auto;
+			}
+		}
+
+		div.cyrsd-slide {
+
+			display: none;
+
+			&.curr {
+				display: block;
+				.cyrsd-slide-caption {
+					@include opacity(1);
+				}
+			}
+
+			h2, img, .cyrsd-slide-caption {
+				position: absolute;
+				z-index: 2;
+			}
+
+			h2 {
+				top: 30px;
+				font-size: 3em;
+				left: 0;
+				margin: 0;
+
+				@media screen and (max-width: $break) {
+					top: 10px;
+					font-size: 2em;
+				}
+			}
+
+			img {
+				top: 0;
+				left: 0;
+				z-index: 1;
+				width: auto;
+				@media screen and (max-width: $break) {
+					position: relative;
+				}
+			}
+
+			.cyrsd-slide-caption {
+				top: 270px;
+				width: 400px;
+				right: 0;
+
+				transition: all 0.2s ease;
+				transition-delay: 0.5s;
+				@include opacity(0);
+
+				p {
+					padding: 10px;
+
+					span {
+						display: block;
+						text-transform: uppercase;
+						font-weight: bold;
+					}
+
+					&.flood {
+						background-color: #E5F1FC;
+					}
+
+					&.drought {
+						background-color: #FCEBDA;
+					}
+				}
+
+				@media screen and (max-width: $break) {
+					top: auto;
+					bottom: 45px;
+					width: 75%;
+					right: auto;
+					left: 0;
+					text-align: left;
+					font-size: .7em;
+					line-height: 1.2em;
+					p {
+						margin: 5px;
+						padding: 5px;
+					}
+				}
+			}
+			@media screen and (max-width: $break) {
+				text-align: right;
+			}
+		}
+	}
+
+	.cyrsd-scrubber {
+		margin: 30px 0;
+		border: 1px solid #DDDDDD;
+		border-width: 2px 0;
+		position: relative;
+
+		.cyrsd-drought,
+		.cyrsd-flood {
+			background-color: #fff;
+			height: 14px;
+			width: 100%;
+			position: relative;
+
+			div {
+				height: 10px;
+				top: 2px;
+				position: absolute;
+
+				&.drought {
+					background-color: #FFE7D1;
+				}
+				&.flood {
+					background-color: #E0EFFF;
+				}
+			}
+		}
+
+		.cyrsd-scale {
+			position: relative;
+
+			div {
+				position: absolute;
+				height: 15px;
+				background-image: url(http://www.abc.net.au/dat/news/interactives/100-yrs-of-drought/interface/tick.png);
+				background-repeat: no-repeat;
+				background-position: center -30px;
+
+				span.label {
+					width: 5em;
+					display: none;
+					position: absolute;
+					left: 50%;
+					bottom: -1.3em;
+					margin-left: -2.5em;
+					text-align: center;
+					color: #666666;
+				}
+
+				&.ten {
+					background-position: center -10px;
+				}
+
+				&.fifty,
+				&.max {
+					
+					background-position: center 0px;
+
+					span.label {
+						display: block;
+					}
+				}
+
+				&.min {
+					span.label {
+						text-align: left;
+						left: 0;
+						margin-left: 0;
+					}
+				}
+
+				&.max {
+					span.label {
+						text-align: right;
+						left: auto;
+						right: 0;
+						margin-left: 0;
+						
+						@media screen and (max-width: $break) {
+							display: none;
+						}
+					}
+				}
+			}
+
+		}
+
+		.cyrsd-handle {
+			background-image: url(http://www.abc.net.au/dat/news/interactives/100-yrs-of-drought/interface/handle.png);
+			background-repeat: no-repeat;
+			width: 14px;
+			height: 43px;
+			margin-left: -7px;
+			position: absolute;
+			z-index: 10;
+			top: -13px;
+		}
+	}
+
+	.cyrsd-credit {
+		margin-bottom: 0;
+		color: #525252;
+		font-size: 90%;
+		clear: both;
+	}
+
+	&.small-multiples {
+		
+		.cyrsd-key,
+		.cyrsd-scrubber {
+			display: none;
+		}
+
+		.cyrsd-trigger {
+			.cyrsd-years {
+				height: auto;
+			}
+		}
+
+		div.cyrsd-slide {
+			display: block;
+			width: 25%;
+			float: left;
+			position: relative;
+			margin: 10px 0;
+
+			img {
+				width: 90%;
+				position: relative;
+				display: block;
+				margin: 0 auto;
+			}
+
+			h2 {
+				top: 10px;
+				font-size: 2em;
+			}
+
+			.cyrsd-slide-caption {
+				display: none;
+			}
+
+			@media screen and (max-width: $break) { 
+				
+				width: 50%;
+
+				h2 {
+					font-size: 1.1em;
+					top: 0;
+				}
+			}
+
+
+		}
+	}
+}
+
+div.article.section div.inline-content.featured-promos {
+	margin-top: 30px;
+}

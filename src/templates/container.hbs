@@ -1,0 +1,66 @@
+<div class="cyrsd-container">
+	<div class="cyrsd-header">
+		<div class="cyrsd-buttons">
+			<button class="timeline active">Timeline view</button> 
+			<button class="small-multiples">Small multiples view</button>
+			<div>Change view</div>
+		</div>
+	</div>
+
+	<div class="cyrsd-trigger">
+		
+		<div class="cyrsd-years">
+			{{#each years}}
+			<div class="{{class}} cyrsd-slide{{#if @first }} curr{{/if}}">
+				<h2>{{year}}</h2>
+				<img src="http://www.abc.net.au/dat/news/interactives/100-yrs-of-drought/{{year}}.png"/>
+				<div class="cyrsd-slide-caption">
+					{{#if drought}}
+					{{#each drought}}
+					<p class="drought"><span>{{title}}</span> {{caption}}</p>
+					{{/each}}
+					{{/if}}
+					{{#if flood}}
+					{{#each flood}}
+					<p class="flood"><span>{{title}}</span> {{caption}}</p>
+					{{/each}}
+					{{/if}}
+				</div>
+			</div>
+			{{/each}}
+		</div>
+
+		<div class="cyrsd-scrubber">
+			<div class="cyrsd-handle"></div>
+			<div class="cyrsd-drought">
+				{{#each years}}
+				<div style="width: {{../fraction}}%; left: {{position}}%" class="{{#if drought}}drought{{/if}}"></div>
+				{{/each}}
+			</div>
+			<div class="cyrsd-flood">
+				{{#each years}}
+				<div style="width: {{../fraction}}%; left: {{position}}%" class="{{#if flood}}flood{{/if}}"></div>
+				{{/each}}
+			</div>
+			<div class="cyrsd-scale">
+				{{#each years}}
+				<div style="width: {{../fraction}}%; left: {{position}}%" class="tick {{#if fifty}} fifty{{/if}}{{#if ten}} ten{{/if}}{{#if max}} max{{/if}}{{#if min}} min{{/if}}"><span class="label">{{year}}</span></div>
+				{{/each}}
+ 			</div>
+		</div>
+
+	</div>
+
+	<div class="cyrsd-key">
+		<h4>Rainfall</h4>
+		<ol>
+			<li><div class="cyrsd-key-color-highest"></div> Highest on record</li>
+			<li><div class="cyrsd-key-color-higher"></div> Very much above average</li>
+			<li><div class="cyrsd-key-color-high"></div> Above average</li>
+			<li><div class="cyrsd-key-color-average"></div> Average</li>
+			<li><div class="cyrsd-key-color-low"></div> Below average</li>
+			<li><div class="cyrsd-key-color-lower"></div> Very much below average</li>
+			<li><div class="cyrsd-key-color-lowest"></div> Lowest on record</li>
+		</ol>
+	</div>
+</div>
